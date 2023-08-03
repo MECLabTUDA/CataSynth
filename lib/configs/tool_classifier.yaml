@@ -1,0 +1,42 @@
+DATA:
+  CROP_DIM:
+  SHAPE: (3, 270, 480)  # (3, 540, 960)
+  NORM: (0.5, 0.5) # ((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+  FRAME_STEP: 5
+  N_SEQ_FRAMES: 1
+  OVERLAPPING_CHUNKS: False
+  WEIGHTED_SAMPLING: True
+  FOLD: 1
+  RANDOM_H_FLIP: True
+  RANDOM_BRIGHTNESS_CONTRAST: True
+
+MODEL:
+  TYPE: DENSENET #InceptionV4
+  FC_CH: [256,256]
+  DROPOUT_P: 0.1
+  CHECKPT: "results/tool_classifier_inceptionv4/2023.02.22 15_49_12/ckpt.pth"
+  #"results/tool_classifier_inceptionv4/2023.02.22 10_36_56/ckpt.pth" 128 feature embedding
+
+TRAIN:
+  EPOCHS: 200  # 20 / 200
+  STEPS: 100  # -1 / 2000
+  BATCH_SIZE: 100 #32
+  NUM_WORKERS: 16 # 4
+  OPTIM_TYPE: "ADAM" #'momentumSGD'
+  MOMENTUM: 0.9
+  POLYAK:
+  SCHED_TYPE: 'REDUCELRONPLATEAU'  #"POLYNOMIALLR"
+  SCHED_POWER: 0.5
+  SCHED_FACTOR: 0.75
+  LR: 0.001
+  ALPHA_1: 50.0
+  ALPHA_2: 0.0
+  CLIP_GRAD_NORM: 1.0
+  WEIGHT_DECAY: 0.0005
+  BETAS: (0.5, 0.999)
+  EPS: 0.00000001
+  VAL_FREQ: 1
+  VAL_SAMPLES: 100 # 64
+  WEIGHTS_PER_CLASS: "lib/configs/weights_per_class.pt"
+  GPUs: "4,5,0,7"
+  STAGE: 0

@@ -1,0 +1,53 @@
+DATA:
+  CROP_DIM:
+  SHAPE: (3, 128, 128)  # Does currently only support **2 sizes
+  NORM: (0.5, 0.5)  # ((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+  FRAME_STEP: 20
+  N_SEQ_FRAMES: 1
+  OVERLAPPING_CHUNKS: False
+  PHASE_WEIGHTED_SAMPLING: False
+  TOOL_WEIGHTED_SAMPLING: False
+  FOLD: -1  # > 0 for X-Validation
+  RANDOM_H_FLIP: False
+  RANDOM_BRIGHTNESS_CONTRAST: False
+
+MODEL:
+  TYPE: simple # bayesian
+  CHANNELS: 128
+  CH_MULT: [ 1, 2, 2, 2, 4 ]
+  NUM_RES_BLOCKS: 2
+  ATTN_RESOLUTIONS: [ 16, ]
+  DROPOUT: 0.1
+  VAR_TYPE: fixedlarge
+  EMA: True
+  EMA_RATE: 0.999
+  RESAMP_WITH_CONV: True
+
+DIFFUSION:
+  BETA_SCHEDULE: linear
+  BETA_START: 0.0001
+  BETA_END: 0.02
+  NUM_DIFFUSION_TIMESTEPS: 1000
+  NUM_SAMPLE_TIMESTEPS: 1000  # For DDPM set equal to above
+  ETA: 0.0
+  SAMPLE_TYPE: ddpm_noisy  # ??
+  SKIP_TYPE: uniform  # ??
+  GUIDANCE: True
+  GUIDANCE_P_UNCOND: 0.1
+  GUIDANCE_STRENGTH: 0.3  # 1.0
+
+TRAIN:
+  EPOCHS: 500
+  STEPS: -1
+  BATCH_SIZE: 4 # 64
+  NUM_WORKERS: 4 # 16
+  OPTIM_TYPE: AdamW
+  SCHED_TYPE: PolynomialLR
+  SCHED_POWER: 0.5
+  LR: 0.0001
+  CLIP_GRAD_NORM: 1.0
+  WEIGHT_DECAY: 0.0
+  BETAS: (0.9, 0.9999)
+  EPS: 0.00000001
+  VAL_FREQ: 10
+  VAL_SAMPLES: 24

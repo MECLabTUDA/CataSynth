@@ -1,0 +1,38 @@
+DATA:
+  CROP_DIM:
+  SHAPE: (3, 64, 64)  # Does currently only support **2 sizes
+  NORM: (0.5, 0.5)
+
+MODEL:
+  TYPE: simple # bayesian
+  CHANNELS: 128
+  CH_MULT: [ 1, 2, 2, 2, 4 ]
+  NUM_RES_BLOCKS: 2
+  ATTN_RESOLUTIONS: [ 16, ]
+  DROPOUT: 0.1
+  VAR_TYPE: fixedlarge
+  EMA: True
+  EMA_RATE: 0.9999
+  RESAMP_WITH_CONV: True
+
+DIFFUSION:
+  BETA_SCHEDULE: linear
+  BETA_START: 0.0001
+  BETA_END: 0.02
+  NUM_DIFFUSION_TIMESTEPS: 1000
+  NUM_SAMPLE_TIMESTEPS: 200  # 100
+  ETA: 0.1  # Controls the scale of the variance (0 is DDIM, 1 is DDPM)
+  SAMPLE_TYPE: generalized  # ??
+  SKIP_TYPE: uniform  # ??
+
+TRAIN:
+  EPOCHS: 1000
+  BATCH_SIZE: 128  # 8, 16, 64
+  NUM_WORKERS: 8
+  LR: 0.0002  # 0.00001
+  CLIP_GRAD_NORM: 1.0
+  WEIGHT_DECAY: 0.0
+  BETAS: (0.9, 0.999)
+  EPS: 0.00000001
+  VAL_FREQ: 10
+  VAL_SAMPLES: 32
