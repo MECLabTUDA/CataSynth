@@ -54,10 +54,32 @@ To evaluate the quality of our generated images, we designed a user study which 
 
 The user study template and results can be found in ```user_study/```.
 
+## How-to Cite
+
+If you use our research or the resources within this repository,
+please consider citing our work. Below is the recommended citation:
+
+### APA (American Psychological Association) Style:
+
+```swift
+Frisch, Y., Fuchs, M., Sanner, A., Ucar, F. A., Frenzel, M., Wasielica-Poslednik, J., ... & Mukhopadhyay, A. (2023).
+Synthesising Rare Cataract Surgery Samples with Guided Diffusion Models. arXiv preprint arXiv:2308.02587.
+```
+
+### BibTeX (for LaTeX users):
+
+```bibtex
+@article{frisch2023synthesising,
+  title={Synthesising Rare Cataract Surgery Samples with Guided Diffusion Models},
+  author={Frisch, Yannik and Fuchs, Moritz and Sanner, Antoine and Ucar, Felix Anton and Frenzel, Marius and Wasielica-Poslednik, Joana and Gericke, Adrian and Wagner, Felix Mathias and Dratsch, Thomas and Mukhopadhyay, Anirban},
+  journal={arXiv preprint arXiv:2308.02587},
+  year={2023}
+}
+```
+
 ## TODOs
 
 * [ ] Add explanation of pre-processed dataset structure 
 * [ ] Add warm-start functionalities
 * [ ] Use WrappedModel in every training and evaluation script
-* [ ] Add how-to cite
-* [ ] Add demo
+* [ ] Add live demo
